@@ -12,6 +12,8 @@ import ToolIndexPage from './pages/admin/Tool/ToolIndexPage'
 import ToolCreatePage from './pages/admin/Tool/ToolCreatePage'
 import ToolEditPage from './pages/admin/Tool/ToolEditPage'
 import StyleIndexPage from './pages/admin/style/StyleIndexPage'
+import StyleCreatePage from './pages/admin/style/StyleCreatePage'
+import StyleEditPage from './pages/admin/style/StyleEditPage'
 import PluginIndexPage from './pages/admin/plugin/PluginIndexPage'
 import ReferenceIndexPage from './pages/admin/reference/ReferenceIndexPage'
 
@@ -41,6 +43,11 @@ export default new VueRouter({
           path: 'dashboard',
           name: 'admin-dashboard',
           component: DashboardPage,
+          meta: {
+            progress: {
+              func: progressConfig
+            }
+          }
         },
         {
           path: 'tools',
@@ -74,9 +81,35 @@ export default new VueRouter({
           }
         },
         {
-          path: 'style-guides',
-          name: 'style-guide',
-          component: StyleIndexPage
+          path: 'styles',
+          name: 'admin-style',
+          component: StyleIndexPage,
+          meta: {
+            progress: {
+              func: progressConfig
+            }
+          }
+        },
+        {
+          path: 'styles/create',
+          name: 'admin-style-create',
+          component: StyleCreatePage,
+          meta: {
+            progress: {
+              func: progressConfig
+            }
+          }
+        },
+        {
+          path: 'styles/edit/:id',
+          props: true,
+          name: 'admin-style-edit',
+          component: StyleEditPage,
+          meta: {
+            progress: {
+              func: progressConfig
+            }
+          }
         },
         {
           path: 'plugins',

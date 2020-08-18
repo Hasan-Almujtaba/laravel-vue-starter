@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Style;
+use App\Http\Requests\StoreStyle;
+use App\Http\Requests\UpdateStyle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Style;
 
 class StyleController extends Controller
 {
@@ -14,17 +17,9 @@ class StyleController extends Controller
    */
   public function index()
   {
-    //
-  }
+    $data = Style::all();
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function create()
-  {
-    //
+    return response()->json($data, 200);
   }
 
   /**
@@ -33,9 +28,15 @@ class StyleController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(StoreStyle $request)
   {
-    //
+    $data = Style::create([
+      'title' => $request->title,
+      'slug' => Str::slug($request->title, '-'),
+      'content' => $request->content,
+    ]);
+
+    return response()->json($data, 200);
   }
 
   /**
@@ -46,18 +47,7 @@ class StyleController extends Controller
    */
   public function show(Style $style)
   {
-    //
-  }
-
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Style  $style
-   * @return \Illuminate\Http\Response
-   */
-  public function edit(Style $style)
-  {
-    //
+    return response()->json($style);
   }
 
   /**
@@ -67,9 +57,15 @@ class StyleController extends Controller
    * @param  \App\Style  $style
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Style $style)
+  public function update(UpdateStyle $request, Style $style)
   {
-    //
+    $data = Style::where('id', $style->id)->update([
+      'title' => $request->title,
+      'slug' => Str::slug($request->title, '-'),
+      'content' => $request->content,
+    ]);
+
+    return response()->json($data, 200);
   }
 
   /**
@@ -80,6 +76,8 @@ class StyleController extends Controller
    */
   public function destroy(Style $style)
   {
-    //
+    $data = Style::destroy($style->id);
+
+    return response(null, 200);
   }
 }

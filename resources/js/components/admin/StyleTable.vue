@@ -10,7 +10,7 @@
 							fab
 							x-small
 							color="primary"
-							:to="{name: 'admin-tool-edit', params: { id: row.item.id }}"
+							:to="{name: 'admin-style-edit', params: { id: row.item.id }}"
 							class="m-2"
 						>
 							<v-icon>mdi-pencil</v-icon>

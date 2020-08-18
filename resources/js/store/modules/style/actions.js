@@ -20,7 +20,7 @@ export const getStyle = ({ commit, dispatch }, payload) => {
 export const storeStyle = ({ commit, dispatch }, payload) => {
   Style.store(payload).then(response => {
     dispatch('removeErrors', null, { root: true })
-    router.push({ name: 'admin-tool' })
+    router.push({ name: 'admin-style' })
   }).catch(error => {
     // check if validation error
     if (error.response.status === 422) {
@@ -31,7 +31,7 @@ export const storeStyle = ({ commit, dispatch }, payload) => {
 
 export const updateStyle = ({ commit, dispatch }, payload) => {
   Style.update(payload).then(response => {
-    router.push({ name: 'admin-tool' })
+    router.push({ name: 'admin-style' })
   }).catch(error => {
     // check if validation error
     if (error.response.status === 422) {

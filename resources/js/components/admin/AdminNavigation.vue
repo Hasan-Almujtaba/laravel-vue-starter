@@ -39,7 +39,7 @@ export default {
 			{
 				icon: "mdi-code-tags",
 				text: "Gaya Penulisan Kode",
-				url: "style-guide",
+				url: "admin-style",
 			},
 			{
 				icon: "mdi-toy-brick-plus ",

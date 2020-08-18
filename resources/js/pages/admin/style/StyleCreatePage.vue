@@ -11,19 +11,12 @@
 					<!-- Content -->
 					<v-card max-width="1000">
 						<!-- Title -->
-						<v-card-title class="tw-text-2xl">Gaya Penulisan Kode</v-card-title>
-						<!-- Add Button -->
-						<v-card-actions>
-							<v-btn fab color="primary" small :to="{name: 'admin-style-create'}">
-								<v-icon>mdi-plus</v-icon>
-							</v-btn>
-						</v-card-actions>
-						<!-- Table -->
-						<style-table></style-table>
+						<v-card-title>Tambah Item</v-card-title>
+						<!-- Form -->
+						<style-create-form></style-create-form>
 					</v-card>
 				</v-container>
 			</v-main>
-
 			<v-footer app>
 				<v-icon>mdi-copyright</v-icon>
 				{{ new Date().getFullYear() }} V-CONNEXT
@@ -31,18 +24,15 @@
 		</v-app>
 	</div>
 </template>
-
 <script>
 import AdminNavigation from "../../../components/admin/AdminNavigation";
-import StyleTable from "../../../components/admin/StyleTable";
-
+import StyleCreateForm from "../../../components/admin/StyleCreateForm";
 export default {
 	components: {
 		AdminNavigation,
-		StyleTable,
+		StyleCreateForm,
 	},
 };
 </script>
-
 <style>
-</style>
+</style> 
