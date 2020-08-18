@@ -5,6 +5,8 @@
 				<tr>
 					<td>{{ row.index + 1 }}</td>
 					<td>{{ row.item.title }}</td>
+					<td>{{ row.item.created_at }}</td>
+					<td>{{ row.item.updated_at }}</td>
 					<td>
 						<v-btn
 							fab
@@ -33,6 +35,8 @@ export default {
 		headers: [
 			{ text: "#", width: 10 },
 			{ text: "Title", value: "title" },
+			{ text: "Created", value: "created_at" },
+			{ text: "Updated", value: "updated_at" },
 			{ text: "Action", width: 100 },
 		],
 	}),
