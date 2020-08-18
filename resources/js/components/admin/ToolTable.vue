@@ -13,7 +13,7 @@
 							:to="{name: 'admin-tool-edit', params: { id: row.item.id }}"
 							class="m-2"
 						>
-							<v-icon>mdi-pencil</v-icon>
+							<v-icon>mdi-home</v-icon>
 						</v-btn>
 						<v-btn fab x-small color="error" class="m-2" @click="confirm(row.item)">
 							<v-icon>mdi-delete</v-icon>
@@ -30,12 +30,6 @@ import { mapState, mapActions } from "vuex";
 
 export default {
 	data: () => ({
-		items: [
-			{ title: "hello" },
-			{ title: "world" },
-			{ title: "za" },
-			{ title: "warudo" },
-		],
 		headers: [
 			{ text: "#", width: 10 },
 			{ text: "Title", value: "title" },
