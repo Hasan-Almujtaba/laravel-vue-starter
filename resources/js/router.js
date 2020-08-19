@@ -18,6 +18,8 @@ import PluginIndexPage from './pages/admin/plugin/PluginIndexPage'
 import PluginCreatePage from './pages/admin/plugin/PluginCreatePage'
 import PluginEditPage from './pages/admin/plugin/PluginEditPage'
 import ReferenceIndexPage from './pages/admin/reference/ReferenceIndexPage'
+import ReferenceCreatePage from './pages/admin/reference/ReferenceCreatePage'
+import ReferenceEditPage from './pages/admin/reference/ReferenceEditPage'
 
 
 Vue.use(VueRouter)
@@ -147,8 +149,34 @@ export default new VueRouter({
         {
           path: 'references',
           name: 'admin-reference',
-          component: ReferenceIndexPage
-        }
+          component: ReferenceIndexPage,
+          meta: {
+            progress: {
+              func: progressConfig
+            }
+          }
+        },
+        {
+          path: 'references/create',
+          name: 'admin-reference-create',
+          component: ReferenceCreatePage,
+          meta: {
+            progress: {
+              func: progressConfig
+            }
+          }
+        },
+        {
+          path: 'references/edit/:id',
+          name: 'admin-reference-edit',
+          props: true,
+          component: ReferenceEditPage,
+          meta: {
+            progress: {
+              func: progressConfig
+            }
+          }
+        },
       ]
     },
     {

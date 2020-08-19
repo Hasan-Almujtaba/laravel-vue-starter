@@ -11,15 +11,10 @@
 					<!-- Content -->
 					<v-card max-width="1000">
 						<!-- Title -->
-						<v-card-title class="tw-text-2xl">Referensi</v-card-title>
-						<!-- Add Button -->
-						<v-card-actions>
-							<v-btn fab color="primary" small :to="{name: 'admin-reference-create'}">
-								<v-icon>mdi-plus</v-icon>
-							</v-btn>
-						</v-card-actions>
-						<!-- Table -->
-						<reference-table></reference-table>
+						<v-card-title>Tambah Item</v-card-title>
+						<!-- Form -->
+						<reference-create-form></reference-create-form>
+						<!-- <tool-table></tool-table> -->
 					</v-card>
 				</v-container>
 			</v-main>
@@ -34,12 +29,12 @@
 
 <script>
 import AdminNavigation from "../../../components/admin/AdminNavigation";
-import ReferenceTable from "../../../components/admin/ReferenceTable";
+import ReferenceCreateForm from "../../../components/admin/ReferenceCreateForm";
 
 export default {
 	components: {
 		AdminNavigation,
-		ReferenceTable,
+		ReferenceCreateForm,
 	},
 };
 </script>

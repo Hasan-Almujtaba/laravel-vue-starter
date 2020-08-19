@@ -11,15 +11,9 @@
 					<!-- Content -->
 					<v-card max-width="1000">
 						<!-- Title -->
-						<v-card-title class="tw-text-2xl">Referensi</v-card-title>
-						<!-- Add Button -->
-						<v-card-actions>
-							<v-btn fab color="primary" small :to="{name: 'admin-reference-create'}">
-								<v-icon>mdi-plus</v-icon>
-							</v-btn>
-						</v-card-actions>
-						<!-- Table -->
-						<reference-table></reference-table>
+						<v-card-title>Ubah Item</v-card-title>
+						<!-- Form -->
+						<reference-edit-form :id="id"></reference-edit-form>
 					</v-card>
 				</v-container>
 			</v-main>
@@ -34,12 +28,15 @@
 
 <script>
 import AdminNavigation from "../../../components/admin/AdminNavigation";
-import ReferenceTable from "../../../components/admin/ReferenceTable";
+import ReferenceEditForm from "../../../components/admin/ReferenceEditForm";
 
 export default {
 	components: {
 		AdminNavigation,
-		ReferenceTable,
+		ReferenceEditForm,
+	},
+	props: {
+		id: null,
 	},
 };
 </script>

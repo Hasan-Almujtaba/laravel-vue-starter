@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import tool from './modules/tool'
 import style from './modules/style'
 import plugin from './modules/plugin'
+import reference from './modules/reference'
 
 import state from './state'
 import * as getters from './getters'
@@ -21,6 +22,7 @@ export default new Vuex.Store({
   modules: {
     tool,
     style,
-    plugin
+    plugin,
+    reference
   }
 })
