@@ -44,12 +44,12 @@ export default {
 			{
 				icon: "mdi-toy-brick-plus ",
 				text: "Plugin dan library",
-				url: "plugin",
+				url: "admin-plugin",
 			},
 			{
 				icon: "mdi-link",
 				text: "Referensi",
-				url: "reference",
+				url: "admin-reference",
 			},
 		],
 	}),

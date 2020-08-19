@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('tools', 'ToolController');
 Route::apiResource('styles', 'StyleController');
+Route::apiResource('plugins', 'PluginController');

@@ -15,6 +15,8 @@ import StyleIndexPage from './pages/admin/style/StyleIndexPage'
 import StyleCreatePage from './pages/admin/style/StyleCreatePage'
 import StyleEditPage from './pages/admin/style/StyleEditPage'
 import PluginIndexPage from './pages/admin/plugin/PluginIndexPage'
+import PluginCreatePage from './pages/admin/plugin/PluginCreatePage'
+import PluginEditPage from './pages/admin/plugin/PluginEditPage'
 import ReferenceIndexPage from './pages/admin/reference/ReferenceIndexPage'
 
 
@@ -113,12 +115,38 @@ export default new VueRouter({
         },
         {
           path: 'plugins',
-          name: 'plugin',
-          component: PluginIndexPage
+          name: 'admin-plugin',
+          component: PluginIndexPage,
+          meta: {
+            progress: {
+              func: progressConfig
+            }
+          }
+        },
+        {
+          path: 'plugins/create',
+          name: 'admin-plugin-create',
+          component: PluginCreatePage,
+          meta: {
+            progress: {
+              func: progressConfig
+            }
+          }
+        },
+        {
+          path: 'plugins/edit/:id',
+          props: true,
+          name: 'admin-plugin-edit',
+          component: PluginEditPage,
+          meta: {
+            progress: {
+              func: progressConfig
+            }
+          }
         },
         {
           path: 'references',
-          name: 'reference',
+          name: 'admin-reference',
           component: ReferenceIndexPage
         }
       ]

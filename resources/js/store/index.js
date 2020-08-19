@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 // modules
 import tool from './modules/tool'
 import style from './modules/style'
+import plugin from './modules/plugin'
 
 import state from './state'
 import * as getters from './getters'
@@ -19,6 +20,7 @@ export default new Vuex.Store({
   actions,
   modules: {
     tool,
-    style
+    style,
+    plugin
   }
 })

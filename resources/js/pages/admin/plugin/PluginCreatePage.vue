@@ -11,15 +11,9 @@
 					<!-- Content -->
 					<v-card max-width="1000">
 						<!-- Title -->
-						<v-card-title class="tw-text-2xl">Plugin dan Library</v-card-title>
-						<!-- Add Button -->
-						<v-card-actions>
-							<v-btn fab color="primary" small :to="{name: 'admin-plugin-create'}">
-								<v-icon>mdi-plus</v-icon>
-							</v-btn>
-						</v-card-actions>
-						<!-- Table -->
-						<plugin-table></plugin-table>
+						<v-card-title>Tambah Item</v-card-title>
+						<!-- Form -->
+						<plugin-create-form></plugin-create-form>
 					</v-card>
 				</v-container>
 			</v-main>
@@ -34,12 +28,12 @@
 
 <script>
 import AdminNavigation from "../../../components/admin/AdminNavigation";
-import PluginTable from "../../../components/admin/PluginTable";
+import PluginCreateForm from "../../../components/admin/PluginCreateForm";
 
 export default {
 	components: {
 		AdminNavigation,
-		PluginTable,
+		PluginCreateForm,
 	},
 };
 </script>
