@@ -11,7 +11,7 @@
 					:error-messages="errors.title"
 				></v-text-field>
 				<small class="tw-text-red-500" v-if="errors.content">{{ errors.content[0] }}</small>
-				<ckeditor :editor="editor" v-model="form.content" :config="editorConfig"></ckeditor>
+				<ckeditor v-model="form.content"></ckeditor>
 				<v-btn color="primary" @click.prevent="storeReference(form)" right class="mt-3">Simpan</v-btn>
 			</v-container>
 		</v-form>
@@ -20,8 +20,7 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import CKEditor from "@ckeditor/ckeditor5-vue";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import CKEditor from "ckeditor4-vue";
 
 export default {
 	components: {
@@ -33,8 +32,6 @@ export default {
 			title: "",
 			content: "",
 		},
-		editor: ClassicEditor,
-		editorConfig: {},
 	}),
 	methods: {
 		...mapActions("reference", ["storeReference"]),

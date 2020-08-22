@@ -1,11 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import goTo from 'vuetify/es5/services/goto'
 
-// Import Page Web
+// Import Web page
 import NotFoundPage from './pages/404/NotFoundPage'
 import HomePage from './pages/web/HomePage'
+import InstallationPage from './pages/web/InstallationPage'
+import ToolPage from './pages/web/ToolPage'
+import StylePage from './pages/web/StylePage'
+import PluginPage from './pages/web/PluginPage'
+import ReferencePage from './pages/web/ReferencePage'
 
-// Import Page Admin
+// import authentication page
+import LoginPage from './pages/auth/LoginPage'
+
+
+// Import Admin page
 import AdminPage from './pages/admin/AdminPage'
 import DashboardPage from './pages/admin/dashboard/DashboardPage'
 import ToolIndexPage from './pages/admin/Tool/ToolIndexPage'
@@ -24,6 +34,7 @@ import ReferenceEditPage from './pages/admin/reference/ReferenceEditPage'
 
 Vue.use(VueRouter)
 
+// progerss bar config
 const progressConfig = [
   { call: 'color', modifier: 'temp', argument: '#03A9F4' },
   { call: 'fail', modifier: 'temp', argument: '#6e0000' },
@@ -31,17 +42,55 @@ const progressConfig = [
   { call: 'transition', modifier: 'temp', argument: { speed: '1.5s', opacity: '0.6s', termination: 500 } }
 ]
 
+// route guard function
+function isLoggedIn(to, from, next) {
+  var isAuthenticated = false
+
+  if (localStorage.getItem('auth')) {
+    isAuthenticated = true
+  }
+
+  if (isAuthenticated) {
+    next()
+  } else {
+    next('/login')
+  }
+}
+
 export default new VueRouter({
   mode: 'history',
+  scrollBehavior: (to, from, savedPosition) => {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  },
   routes: [
     {
       path: '/',
       component: HomePage,
-      name: 'admin-documentation'
+      name: 'homepage',
+      meta: {
+        progress: {
+          func: progressConfig
+        }
+      }
+    },
+    {
+      path: '/login',
+      component: LoginPage,
+      name: 'login',
+      meta: {
+        progress: {
+          func: progressConfig
+        }
+      }
     },
     {
       path: '/admin',
       component: AdminPage,
+      beforeEnter: isLoggedIn,
       children: [
         {
           path: 'dashboard',
@@ -178,6 +227,56 @@ export default new VueRouter({
           }
         },
       ]
+    },
+    {
+      path: '/instalasi',
+      component: InstallationPage,
+      name: 'installation',
+      meta: {
+        progress: {
+          func: progressConfig
+        }
+      }
+    },
+    {
+      path: '/alat-pengembangan',
+      component: ToolPage,
+      name: 'resource',
+      meta: {
+        progress: {
+          func: progressConfig
+        }
+      }
+    },
+    {
+      path: '/gaya-penulisan-kode',
+      component: StylePage,
+      name: 'style',
+      meta: {
+        progress: {
+          func: progressConfig
+        }
+      }
+    },
+    {
+      path: '/plugin-dan-library',
+      component: PluginPage,
+      name: 'plugin',
+      meta: {
+        progress: {
+          func: progressConfig
+        }
+      }
+    },
+    {
+      path: '/referensi',
+      component: ReferencePage,
+      name: 'reference',
+      meta: {
+        progress: {
+          func: progressConfig
+        }
+      }
     },
     {
       path: '/404',
