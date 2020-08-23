@@ -22,11 +22,16 @@
 			<v-toolbar-title style="width: 300px" class="ml-0 pl-4">
 				<span class="hidden-sm-and-down">Admin</span>
 			</v-toolbar-title>
+			<v-spacer></v-spacer>
+			<v-btn icon @click="confirm">
+				<v-icon>mdi-logout</v-icon>
+			</v-btn>
 		</v-app-bar>
 	</div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
 	data: () => ({
 		drawer: null,
@@ -53,6 +58,24 @@ export default {
 			},
 		],
 	}),
+	methods: {
+		...mapActions("auth", ["logout"]),
+		confirm() {
+			this.$swal({
+				title: "Logout?",
+				text: "Your session will be deleted!",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Logout",
+			}).then((result) => {
+				if (result.value) {
+					this.logout();
+				}
+			});
+		},
+	},
 };
 </script>
 

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Register;
 use App\Http\Requests\Login;
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -28,14 +28,13 @@ class AuthController extends Controller
     $authentication = Auth::attempt(['email' => $request->email, 'password' => $request->password]);
 
     if (!$authentication) {
-      return response()->json(['message' => 'Unauthorized'], 401);
+      return response()->json(['message' => 'Password Incorrect'], 401);
     }
 
     $user = $request->user();
-    $tokenResult = $user->createToken('Personal Access Token');
-    $token = $tokenResult->token;
+    $token = $user->createToken('Personal Access Token');
 
-    return response()->json($tokenResult);
+    return response()->json($token);
   }
 
   public function user(Request $request)

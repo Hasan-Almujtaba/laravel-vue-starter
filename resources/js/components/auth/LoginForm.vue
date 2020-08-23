@@ -11,10 +11,21 @@
 				</v-toolbar>
 				<v-card-text>
 					<v-form>
-						<v-text-field label="username" v-model="form.username"></v-text-field>
-						<v-text-field label="password" v-model="form.password" type="password"></v-text-field>
+						<v-alert type="error" v-if="errors.status === 401">{{ errors.data }}</v-alert>
+						<v-text-field
+							label="email"
+							v-model="form.email"
+							:error-messages="errors.data ? errors.data.email : null"
+							type="email"
+						></v-text-field>
+						<v-text-field
+							label="password"
+							v-model="form.password"
+							:error-messages="errors.data ? errors.data.password : null"
+							type="password"
+						></v-text-field>
 						<div class="text-right">
-							<v-btn color="primary" @click="submit">Login</v-btn>
+							<v-btn color="primary" @click="login(form)">Login</v-btn>
 						</div>
 					</v-form>
 				</v-card-text>
@@ -24,17 +35,20 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
 	data: () => ({
 		form: {
-			username: "",
+			email: "",
 			password: "",
 		},
 	}),
 	methods: {
-		submit() {
-			alert(this.form);
-		},
+		...mapActions("auth", ["login"]),
+	},
+	computed: {
+		...mapState(["errors"]),
 	},
 };
 </script>

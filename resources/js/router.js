@@ -46,7 +46,7 @@ const progressConfig = [
 function isLoggedIn(to, from, next) {
   var isAuthenticated = false
 
-  if (localStorage.getItem('auth')) {
+  if (localStorage.getItem('token')) {
     isAuthenticated = true
   }
 

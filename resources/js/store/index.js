@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // modules
+import auth from './modules/auth'
 import tool from './modules/tool'
 import style from './modules/style'
 import plugin from './modules/plugin'
@@ -20,6 +21,7 @@ export default new Vuex.Store({
   mutations,
   actions,
   modules: {
+    auth,
     tool,
     style,
     plugin,
