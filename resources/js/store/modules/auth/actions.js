@@ -4,8 +4,7 @@ import router from '../../../router'
 export const login = ({ commit, dispatch }, payload) => {
   Auth.login(payload).then(response => {
     dispatch('removeErrors', null, { root: true })
-    localStorage.setItem('token', response.data.accessToken)
-    commit('SET_TOKEN')
+    commit('SET_TOKEN', response.data.access_token)
     router.push({ name: 'admin-dashboard' })
   }).catch(error => {
     var errorData = {
@@ -31,7 +30,6 @@ export const login = ({ commit, dispatch }, payload) => {
 
 export const logout = ({ commit }) => {
   Auth.logout().then(response => {
-    localStorage.removeItem('token')
     commit('REMOVE_TOKEN')
     router.push({ name: 'login' })
   }).catch(error => {
