@@ -4,7 +4,7 @@ const END_POINT = '/plugins'
 
 export default {
   all() {
-    return Api.get(END_POINT)
+    return Api.get('/plugin')
   },
 
   show(id) {

@@ -4,7 +4,7 @@ const END_POINT = '/styles'
 
 export default {
   all() {
-    return Api.get(END_POINT)
+    return Api.get('/style')
   },
 
   show(id) {

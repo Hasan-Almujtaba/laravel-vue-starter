@@ -4,7 +4,7 @@ const END_POINT = '/tools'
 
 export default {
   all() {
-    return Api.get(END_POINT)
+    return Api.get('/tool')
   },
 
   show(id) {

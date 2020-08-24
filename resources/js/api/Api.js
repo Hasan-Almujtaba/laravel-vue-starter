@@ -1,5 +1,6 @@
 import axios from 'axios'
 import App from '../app'
+import store from '../store'
 
 const Api = axios.create({
   baseURL: '/api',
@@ -8,7 +9,7 @@ const Api = axios.create({
 
 Api.interceptors.request.use(config => {
   App.$Progress.start(); // for every request start the progress
-  config.headers.Authorization = 'Bearer ' + localStorage.getItem('token') || null;
+  config.headers.Authorization = 'Bearer ' + store.state.auth.token || null;
   return config;
 });
 

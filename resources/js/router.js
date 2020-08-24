@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import goTo from 'vuetify/es5/services/goto'
+
+import store from './store'
 
 // Import Web page
 import NotFoundPage from './pages/404/NotFoundPage'
@@ -42,22 +43,7 @@ const progressConfig = [
   { call: 'transition', modifier: 'temp', argument: { speed: '1.5s', opacity: '0.6s', termination: 500 } }
 ]
 
-// route guard function
-function isLoggedIn(to, from, next) {
-  var isAuthenticated = false
-
-  if (localStorage.getItem('token')) {
-    isAuthenticated = true
-  }
-
-  if (isAuthenticated) {
-    next()
-  } else {
-    next('/login')
-  }
-}
-
-export default new VueRouter({
+const router = new VueRouter({
   mode: 'history',
   scrollBehavior: (to, from, savedPosition) => {
     if (savedPosition) {
@@ -70,7 +56,7 @@ export default new VueRouter({
     {
       path: '/',
       component: HomePage,
-      name: 'homepage',
+      name: 'home',
       meta: {
         progress: {
           func: progressConfig
@@ -84,13 +70,17 @@ export default new VueRouter({
       meta: {
         progress: {
           func: progressConfig
-        }
+        },
+        guest: true
       }
     },
     {
       path: '/admin',
       component: AdminPage,
-      beforeEnter: isLoggedIn,
+      meta: {
+        requiresAuth: true
+      },
+      redirect: { name: 'admin-dashboard' },
       children: [
         {
           path: 'dashboard',
@@ -288,3 +278,28 @@ export default new VueRouter({
     },
   ]
 })
+
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.state.auth.token == null) {
+      next({
+        name: 'login',
+        params: { nextUrl: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else if (to.matched.some(record => record.meta.guest)) {
+    if (store.state.auth.token == null) {
+      next()
+    }
+    else {
+      next({ name: 'admin-dashboard' })
+    }
+  } else {
+    next()
+  }
+})
+
+export default router
