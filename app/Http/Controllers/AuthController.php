@@ -25,27 +25,32 @@ class AuthController extends Controller
 
   public function login(Login $request)
   {
-    $authentication = Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+    $credentials = ['email' => $request->email, 'password' => $request->password];
 
-    if (!$authentication) {
-      return response()->json(['message' => 'Password Incorrect'], 401);
+    if (!$token = auth()->attempt($credentials)) {
+      return response()->json(['error' => 'Unauthorized'], 401);
     }
 
-    $user = $request->user();
-    $token = $user->createToken('Personal Access Token');
-
-    return response()->json($token);
+    return $this->respondWithToken($token);
   }
 
   public function user(Request $request)
   {
-    return response()->json($request->user());
+    return response()->json(auth()->user());
   }
 
-  public function logout(Request $request)
+  public function logout()
   {
-    $request->user()->token()->revoke();
+    auth()->logout();
 
     return response()->json(['message' => 'Successfully logged out']);
+  }
+
+  protected function respondWithToken($token)
+  {
+    return response()->json([
+      'access_token' => $token,
+      'token_type' => 'bearer',
+    ]);
   }
 }
