@@ -23,6 +23,9 @@
 				<span class="hidden-sm-and-down">Admin</span>
 			</v-toolbar-title>
 			<v-spacer></v-spacer>
+			<v-btn icon :to="{name: 'home'}">
+				<v-icon>mdi-web</v-icon>
+			</v-btn>
 			<v-btn icon @click="confirm">
 				<v-icon>mdi-logout</v-icon>
 			</v-btn>

@@ -44,7 +44,7 @@ export default {
 	},
 	data: () => ({
 		drawer: null,
-		element: "hello",
+		element: "",
 	}),
 };
 </script>

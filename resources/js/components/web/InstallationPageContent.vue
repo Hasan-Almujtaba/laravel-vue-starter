@@ -57,7 +57,16 @@
 			<h2 class="text-h5 mt-10">5. Buat Database (Opsional)</h2>
 			<p class="text-body-2">
 				Buat database dengan nama project yang akan dibuat kemudian jalankan perintah
-				<code>php artisan migrate</code> pada terminal untuk membuat table sesuai dengan file migration bawaan yang terdapat dalam starter project ini
+				<code>php artisan migrate</code> pada terminal untuk membuat table sesuai dengan file migration bawaan yang terdapat dalam starter project ini. Untuk seeding database user jalankan perintah
+				<code>php artisan db:seed --class=UserSeeder</code>
+			</p>
+		</div>
+		<!-- Generate JWT Token -->
+		<div>
+			<h2 class="text-h5 mt-10">5. Generate JWT Key</h2>
+			<p class="text-body-2">
+				Jalankan perintah
+				<code>php artisan jwt:secret</code> pada terminal untuk generate key JWT
 			</p>
 		</div>
 	</div>

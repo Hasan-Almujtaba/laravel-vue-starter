@@ -9,6 +9,7 @@
 				<!-- Provides the application the proper gutter -->
 				<v-container fluid>
 					<!-- Content -->
+					<v-img src="/images/dashboard.svg" contain></v-img>
 				</v-container>
 			</v-main>
 

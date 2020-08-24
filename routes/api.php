@@ -24,9 +24,13 @@ Route::post('login', 'AuthController@login');
 Route::middleware('auth:api')->group(function () {
   Route::get('user', 'AuthController@user');
   Route::get('logout', 'AuthController@logout');
+  Route::apiResource('tools', 'ToolController');
+  Route::apiResource('styles', 'StyleController');
+  Route::apiResource('plugins', 'PluginController');
+  Route::apiResource('references', 'ReferenceController');
 });
 
-Route::apiResource('tools', 'ToolController');
-Route::apiResource('styles', 'StyleController');
-Route::apiResource('plugins', 'PluginController');
-Route::apiResource('references', 'ReferenceController');
+Route::get('tool', 'ToolController@index');
+Route::get('style', 'StyleController@index');
+Route::get('plugin', 'PluginController@index');
+Route::get('reference', 'ReferenceController@index');
