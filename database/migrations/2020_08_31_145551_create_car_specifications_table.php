@@ -14,7 +14,7 @@ class CreateCarSpecificationsTable extends Migration
     public function up()
     {
         Schema::create('car_specifications', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->foreignId('car_id')->constrained()->onDelete('cascade');
             $table->string('desc');
             $table->string('engine');
