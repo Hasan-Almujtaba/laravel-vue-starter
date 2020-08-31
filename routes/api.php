@@ -21,16 +21,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 
-Route::middleware('auth:api')->group(function () {
-  Route::get('user', 'AuthController@user');
-  Route::get('logout', 'AuthController@logout');
-  Route::apiResource('tools', 'ToolController');
-  Route::apiResource('styles', 'StyleController');
-  Route::apiResource('plugins', 'PluginController');
-  Route::apiResource('references', 'ReferenceController');
-});
+// Route::middleware('auth:api')->group(function () {
+//   Route::get('user', 'AuthController@user');
+//   Route::get('logout', 'AuthController@logout');
+// });
 
-Route::get('tool', 'ToolController@index');
-Route::get('style', 'StyleController@index');
-Route::get('plugin', 'PluginController@index');
-Route::get('reference', 'ReferenceController@index');
+Route::apiResource('cars', 'CarController');
+Route::apiResource('car-details', 'CarDetailController');
+Route::apiResource('car-galleries', 'CarGalleryController');
+Route::apiResource('car-specifications', 'CarSpecificationController');
+Route::apiResource('car-three-sixties', 'CarThreeSixtyController');
+Route::apiResource('car-variants', 'CarVariantController');
+Route::apiResource('inventories', 'InventoryController');
+Route::apiResource('banners', 'BannerController');
+
